@@ -24,7 +24,8 @@
 
 <% if @user.user_tasks %>
     <% @user_tasks.each do |usertask| %>
-    <p><%= usertask.task.name %> <%= usertask.price %> </p>
+    <p><%= usertask.task.name %> </p>
+    <p>Preço: <%= humanized_money_with_symbol(usertask.price) %></p>
       <% if current_user == @user && current_user.caregiver %>
       <p><%= link_to "Editar atividade", edit_user_task_path(usertask) %></p>
       <p><%= link_to "Apagar atividade", user_task_path(usertask),
