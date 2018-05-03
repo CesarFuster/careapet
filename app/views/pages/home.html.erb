@@ -1,8 +1,10 @@
 <div class="container">
-  <p>Bem-vindos!</p>
-
-  <p><%= @buyers.count %> usuários </p>
-  <p><%= @caregivers.count %> cuidadores </p>
+  <h3>Bem-vindos!</h3>
+    <p><%= @buyers.count %> usuários </p>
+    <p><%= @caregivers.count %> cuidadores </p>
+    <p>
+    <span id="banner-typed-text"></span>
+    </p>
 
   <p>ver todos os <%= link_to 'cuidadores', users_path %></p>
   <hr>
