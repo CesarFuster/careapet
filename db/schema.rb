@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180502205832) do
+ActiveRecord::Schema.define(version: 20180503171248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,10 +51,8 @@ ActiveRecord::Schema.define(version: 20180502205832) do
     t.datetime "updated_at", null: false
     t.boolean "confirmed", default: false
     t.boolean "pay_authorized", default: false
-    t.bigint "user_tasks_id"
     t.index ["buyer_id"], name: "index_services_on_buyer_id"
     t.index ["caregiver_id"], name: "index_services_on_caregiver_id"
-    t.index ["user_tasks_id"], name: "index_services_on_user_tasks_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -109,7 +107,6 @@ ActiveRecord::Schema.define(version: 20180502205832) do
 
   add_foreign_key "pets", "users"
   add_foreign_key "reviews", "users"
-  add_foreign_key "services", "user_tasks", column: "user_tasks_id"
   add_foreign_key "user_tasks", "tasks"
   add_foreign_key "user_tasks", "users"
   add_foreign_key "users", "services"
