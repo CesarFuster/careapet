@@ -43,8 +43,6 @@ class ServicesController < ApplicationController
           description: user_task.task.name
         )
         item.save!
-      @service.price = @service.items.sum(&:price_cents)
-
       end
 
       if @service.save!
