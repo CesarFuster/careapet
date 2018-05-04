@@ -4,6 +4,8 @@ class Service < ApplicationRecord
   has_many :items
   belongs_to :buyer, class_name: 'User'
   belongs_to :caregiver, class_name: 'User'
+
+  monetize :price_cents
 end
 
 

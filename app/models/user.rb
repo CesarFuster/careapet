@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :pets, dependent: :destroy
   has_many :user_tasks
   has_many :tasks, through: :user_tasks
+  has_many :orders
 
   belongs_to :service, optional: true
   has_many :buyer_services, class_name: 'Service', foreign_key: 'buyer_id'
