@@ -5,3 +5,10 @@
 
 <p>Mussum Ipsum, cacilds vidis litro abertis. Si num tem leite então bota uma pinga aí cumpadi! Quem manda na minha terra sou euzis! Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Mais vale um bebadis conhecidiss, que um alcoolatra anonimis.</p>
 
+<ul>
+  <% @service.items.each do |item| %>
+    <li><%= item.description %> - <%= item.price_cents %></li>
+  <% end %>
+</ul>
+
+<h3>Total: <%= @service.items.sum(&:price_cents) %></h3>

@@ -30,9 +30,21 @@ class ServicesController < ApplicationController
   end
 
   def create
-    @service = Service.new(service_params)
-    @service.buyer = current_user
-    @service.caregiver = @user
+      @service = Service.new(service_params)
+      @service.buyer = current_user
+      @service.caregiver = @user
+
+      items = user_task_params[:user_task_ids].drop(1)
+      items.each do |item|
+        user_task = UserTask.where(task: item.to_i).take
+        item = Item.new(
+          service: @service,
+          price_cents: user_task.price_cents,
+          description: user_task.task.name
+        )
+        item.save!
+      end
+
       if @service.save!
         ServiceMailer.new_service_buyer(@service).deliver_now
         ServiceMailer.new_service_caregiver(@service).deliver_now
@@ -55,6 +67,10 @@ class ServicesController < ApplicationController
 
   def service_params
     params.require(:service).permit(:start_date, :end_date, :buyer_id, :caregiver_id, :confirmed, :pay_authorized)
+  end
+
+  def user_task_params
+    params.require(:service).permit(user_task_ids: [])
   end
 
 end

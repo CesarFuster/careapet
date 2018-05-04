@@ -9,12 +9,32 @@
   <p>confirmado: <%= @service.confirmed %> </p>
   <p>status do pagamento: <%= @service.pay_authorized %> </p>
 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Item</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @service.items.each_with_index do |item, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= item.description %></td>
+          <td><%= item.price_cents %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="2">Total:</th>
+        <th><%= @service.items.sum(&:price_cents) %></th>
+      </tr>
+    </tfoot>
+  </table>
 
   <p> <%= link_to "Minha página", current_user %> </p>
   <p> <%= link_to "home", root_path %> </p>
 
 </div>
-
-
-
-
