@@ -8,7 +8,7 @@
     <div>
       <%= form_tag users_path, method: :get do %>
       <%= text_field_tag :address, params[:address], placeholder: 'Digite seu endereço' %>
-      <p><%= submit_tag "Buscar" %></p>
+      <p><%= submit_tag "Buscar", class: 'btn btn-danger' %></p>
       <% end %>
     </div>
   </div>
