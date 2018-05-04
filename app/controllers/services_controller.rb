@@ -35,8 +35,10 @@ class ServicesController < ApplicationController
       @service.caregiver = @user
 
       items = user_task_params[:user_task_ids].drop(1)
+      task_sum = 0
       items.each do |item|
         user_task = UserTask.where(task: item.to_i).take
+        task_sum += user_task.price_cents
         item = Item.new(
           service: @service,
           price_cents: user_task.price_cents,
@@ -44,6 +46,8 @@ class ServicesController < ApplicationController
         )
         item.save!
       end
+
+      @service.price_cents = task_sum
 
       if @service.save!
         ServiceMailer.new_service_buyer(@service).deliver_now
