@@ -29,12 +29,25 @@
     <tfoot>
       <tr>
         <th colspan="2">Total:</th>
-        <th><%= @service.items.sum(&:price_cents) %></th>
+        <th><%= @service.price %></th>
       </tr>
     </tfoot>
   </table>
 
-  <p> <%= link_to "Minha página", current_user %> </p>
-  <p> <%= link_to "home", root_path %> </p>
+  <hr>
+
+  <% if @service.pay_authorized %>
+      <p>Pagamento</p>
+    <%= form_tag orders_path do %>
+        <%= hidden_field_tag 'service_id', @service.id %>
+        <%= submit_tag 'Pagar', class: 'btn btn-success' %>
+    <% end %>
+  <% end %>
+
+
+
+  <hr>
+    <p> <%= link_to "Minha página", current_user %> </p>
+    <p> <%= link_to "home", root_path %> </p>
 
 </div>
