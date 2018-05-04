@@ -92,7 +92,10 @@
 
 
 
-  <div>
+
+<div id="reviews">
+
+    <div>
         <p> Rating:
           <% empty = 5 - @avg_review.to_i %>
           <% @avg_review.to_i.times do %>
@@ -104,16 +107,10 @@
           </p>
     </div>
 
-    <hr>
-
-<div id="reviews">
-  <% if @user.reviews.blank? && current_user != @user %>
-    Seja o primeiro a comentar sobre <%= @user.first_name %>
-  <% else %>
     <% @user.reviews.each do |review| %>
       <%= render 'reviews/show', review: review %>
     <% end %>
-  <% end %>
+
 </div>
 
   <% if current_user != @user %>
