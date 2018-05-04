@@ -35,7 +35,7 @@
   <% end %>
 <% end %>
 
-  <% if @user.user_tasks && current_user != @user %>
+  <% if @user.user_tasks && current_user != @user || @user == @user.caregiver %>
     <%= link_to "Selecionar atividades para contratar", new_user_service_path(@user) %>
   <% end %>
 
