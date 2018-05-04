@@ -23,6 +23,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @review = Review.new
     @reviews = @user.reviews
+    @avg_review = @user.reviews.average(:rating)
+
     @pet = Pet.new
     @pets = @user.pets
     @user_task = UserTask.new

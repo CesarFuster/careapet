@@ -92,7 +92,19 @@
 
 
 
+  <div>
+        <p> Rating:
+          <% empty = 5 - @avg_review.to_i %>
+          <% @avg_review.to_i.times do %>
+            <i class="fas fa-star"></i>
+          <% end %>
+          <% empty.times do %>
+            <i class="far fa-star"></i>
+          <% end %>
+          </p>
+    </div>
 
+    <hr>
 
 <div id="reviews">
   <% if @user.reviews.blank? && current_user != @user %>
