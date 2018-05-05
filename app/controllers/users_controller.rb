@@ -41,9 +41,14 @@ class UsersController < ApplicationController
   end
 
   def upvote
-    @user = User.find(params[:id])
-    @user.upvote_by current_user
-    redirect_to user_path(@user)
+    if @user == current_user
+      flash[:alert] = "Não autorizado!"
+      redirect_to user_path(@user)
+    else
+      @user = User.find(params[:id])
+      @user.upvote_by current_user
+      redirect_to user_path(@user)
+    end
   end
 
 end
