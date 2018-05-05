@@ -65,6 +65,17 @@
 
 <% end %>
 
+<hr>
+
+<div >
+  <% if current_user != @user %>
+    <%= link_to upvote_user_path(@user), method: :put, class: "btn btn-default btn-sm" do %>
+     <span></span>
+      Upvote
+      <%= @user.get_upvotes.size %>
+    <% end %>
+  <% end %>
+</div>
 
 <hr>
 

@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_many :buyer_services, class_name: 'Service', foreign_key: 'buyer_id'
   has_many :caregiver_services, class_name: 'Service', foreign_key: 'caregiver_id'
 
+  acts_as_votable
+  acts_as_voter
 
   validates :first_name, presence: true
   validates :last_name, presence: true
