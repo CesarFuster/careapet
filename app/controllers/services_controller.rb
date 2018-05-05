@@ -38,16 +38,16 @@ class ServicesController < ApplicationController
       task_sum = 0
       items.each do |item|
         user_task = UserTask.where(task: item.to_i).take
-        task_sum += user_task.price_cents
+        task_sum += user_task.price
         item = Item.new(
           service: @service,
-          price_cents: user_task.price_cents,
+          price: user_task.price,
           description: user_task.task.name
         )
         item.save!
       end
 
-      @service.price_cents = task_sum
+      @service.price = task_sum
 
       if @service.save!
         ServiceMailer.new_service_buyer(@service).deliver_now

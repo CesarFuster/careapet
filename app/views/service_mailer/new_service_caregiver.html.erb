@@ -11,8 +11,8 @@
 
 <ul>
   <% @service.items.each do |item| %>
-    <li><%= item.description %> - <%= item.price_cents %></li>
+    <li><%= item.description %> - <%= item.price %></li>
   <% end %>
 </ul>
 
-<h3>Total: <%= @service.items.sum(&:price_cents) %></h3>
+<h3>Total: <%= @service.items.sum(&:price) %></h3>
