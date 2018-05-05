@@ -46,8 +46,13 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     else
       @user = User.find(params[:id])
-      @user.upvote_by current_user
-      redirect_to user_path(@user)
+      if current_user.voted_for? @user
+        @user.unvote_by current_user
+        redirect_to user_path(@user)
+      else
+        @user.upvote_by current_user
+        redirect_to user_path(@user)
+      end
     end
   end
 
