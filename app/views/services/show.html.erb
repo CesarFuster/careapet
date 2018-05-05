@@ -22,14 +22,14 @@
         <tr>
           <td><%= index + 1 %></td>
           <td><%= item.description %></td>
-          <td><%= item.price_cents %></td>
+          <td><%= item.price %></td>
         </tr>
       <% end %>
     </tbody>
     <tfoot>
       <tr>
         <th colspan="2">Total:</th>
-        <th><%= @service.items.sum(&:price_cents)%></th>
+        <th><%= @service.items.sum(&:price)%></th>
       </tr>
     </tfoot>
   </table>
