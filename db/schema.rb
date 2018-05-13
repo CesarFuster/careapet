@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180513133526) do
+ActiveRecord::Schema.define(version: 20180513143925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20180513133526) do
     t.boolean "confirmed", default: false
     t.boolean "pay_authorized", default: false
     t.integer "price_cents", default: 0, null: false
+    t.string "period"
     t.index ["buyer_id"], name: "index_services_on_buyer_id"
     t.index ["caregiver_id"], name: "index_services_on_caregiver_id"
   end

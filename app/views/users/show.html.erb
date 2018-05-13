@@ -45,6 +45,7 @@
     <p> <%= link_to "Número de Serviço #{service.id}", service_path(service) %> </p>
     <p> Cuidador: <%= service.caregiver.first_name %> </p>
     <p> Data: <%= service.created_at.strftime("%d/%m/%y") %></p>
+    <p> Período: <%= service.period %></p>
     <p> confirmado: <%= service.confirmed %></p>
     <p> status do pagamento: <%= service.pay_authorized %></p>
     <% if service.confirmed == true && service.pay_authorized == false %>
@@ -56,6 +57,7 @@
     <p> <%= link_to "Número de Serviço #{service.id}", service_path(service) %>  </p>
     <p> Cliente: <%= service.buyer.first_name %> </p>
     <p> Data: <%= service.created_at.strftime("%d/%m/%y") %></p>
+    <p> Período: <%= service.period %></p>
     <p> confirmado: <%= service.confirmed  %></p>
     <% if service.confirmed == false %>
      <p> <%= link_to "Confirmar serviço", toggle_service_path(service), method: :put %> </p>

@@ -70,7 +70,7 @@ class ServicesController < ApplicationController
   end
 
   def service_params
-    params.require(:service).permit(:date, :buyer_id, :caregiver_id, :confirmed, :pay_authorized, :price)
+    params.require(:service).permit(:date, :period, :buyer_id, :caregiver_id, :confirmed, :pay_authorized, :price)
   end
 
   def user_task_params
