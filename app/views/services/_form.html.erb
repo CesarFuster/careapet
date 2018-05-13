@@ -2,7 +2,6 @@
   <div>
     <%= simple_form_for [@user, @service] do |f| %>
       <%= f.input :start_date %>
-      <%= f.input :end_date %>
       <%= f.association :user_tasks, collection: @user.tasks, as: :check_boxes %>
       <p></p>
       <%= f.submit %>
