@@ -3,18 +3,18 @@
 <div class="container">
   <h1>Serviço</h1>
 
-  <p>comprador: <%= @service.buyer.first_name %></p>
-  <p>cuidador: <%= @service.caregiver.first_name %></p>
+  <p>Cliente: <%= @service.buyer.first_name %></p>
+  <p>Cuidador: <%= @service.caregiver.first_name %></p>
   <p>Data: <%= @service.date %></p>
-  <p>confirmado: <%= @service.confirmed %> </p>
-  <p>status do pagamento: <%= @service.pay_authorized %> </p>
+  <p>Confirmado: <%= @service.confirmed %> </p>
+  <p>Status de pagamento: <%= @service.pay_authorized %> </p>
 
   <table class="table">
     <thead>
       <tr>
         <th>#</th>
-        <th>Item</th>
-        <th>Price</th>
+        <th>Atividade</th>
+        <th>Preço</th>
       </tr>
     </thead>
     <tbody>
@@ -47,7 +47,9 @@
 
 
   <hr>
-    <p> <%= link_to "Minha página", current_user %> </p>
+
+    <p> <%= link_to "Página de #{current_user.first_name}", current_user %> </p>
+
     <p> <%= link_to "home", root_path %> </p>
 
 </div>
