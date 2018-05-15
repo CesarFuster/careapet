@@ -37,13 +37,12 @@
   <hr>
 
   <% if @service.pay_authorized %>
-      <p>Pagamento</p>
+      <p>Serviço autorizado para pagamento</p>
     <%= form_tag orders_path do %>
         <%= hidden_field_tag 'service_id', @service.id %>
         <%= submit_tag 'Pagar', class: 'btn btn-success' %>
     <% end %>
   <% end %>
-
 
   <hr>
 

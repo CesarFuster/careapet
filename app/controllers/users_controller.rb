@@ -25,6 +25,8 @@ class UsersController < ApplicationController
     @reviews = @user.reviews
     @avg_review = @user.reviews.average(:rating)
 
+    @order = Order.new
+    @orders = @user.orders
     @pet = Pet.new
     @pets = @user.pets
     @user_task = UserTask.new
