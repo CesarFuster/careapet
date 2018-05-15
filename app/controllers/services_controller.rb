@@ -8,6 +8,10 @@ class ServicesController < ApplicationController
   end
 
   def show
+    @order = Order.new
+    @order.service = @service
+    order = @order.service
+    @order_paid = order[state: 'paid']
   end
 
   def toggle

@@ -7,7 +7,8 @@
   <p>Data: <%= @service.date %></p>
   <p>Período: <%= @service.period %></p>
   <p>Confirmado: <%= @service.confirmed %> </p>
-  <p>Status de pagamento: <%= @service.pay_authorized %> </p>
+  <p>Autorização: <%= @service.pay_authorized %> </p>
+  <p>Pagamento: <%= @order_paid %> </p>
 
   <table class="table">
     <thead>
@@ -36,7 +37,7 @@
 
   <hr>
 
-  <% if @service.pay_authorized %>
+  <% if @service.pay_authorized && @order_paid%>
       <p>Serviço autorizado para pagamento</p>
     <%= form_tag orders_path do %>
         <%= hidden_field_tag 'service_id', @service.id %>
