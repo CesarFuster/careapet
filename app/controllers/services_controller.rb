@@ -9,9 +9,7 @@ class ServicesController < ApplicationController
 
   def show
     @order = Order.new
-    @order.service = @service
-    order = @order.service
-    @order_paid = order[state: 'paid']
+    @order = @service.order
   end
 
   def toggle
