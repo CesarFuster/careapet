@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
 
   def create
     service = Service.find(params[:service_id])
-    order  = Order.create!(amount: service.price, state: 'pending', user: current_user)
+    order  = Order.create!(service: service, amount: service.price, state: 'pending', user: current_user)
 
     redirect_to new_order_payment_path(order)
   end

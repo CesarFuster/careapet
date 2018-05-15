@@ -8,6 +8,8 @@ class ServicesController < ApplicationController
   end
 
   def show
+    @order = Order.new
+    @order = @service.order
   end
 
   def toggle
