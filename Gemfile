@@ -24,6 +24,7 @@ gem "letter_opener", group: :development
 gem 'money-rails'
 gem 'stripe'
 gem 'acts_as_votable', '~> 0.11.1'
+gem 'omniauth-facebook'
 
 
 group :development do
