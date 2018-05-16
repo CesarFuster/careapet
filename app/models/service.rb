@@ -9,7 +9,20 @@ class Service < ApplicationRecord
   monetize :price_cents
 
   validates :period, inclusion: { in: ['9h - 10h', '10h - 11h','11h - 14h', '15h - 16h ', '16h - 17h']}
+
+  def available?(date, period)
+    is_service_available = []
+    caregiver.caregiver_services.select do |caregiver_service|
+      if caregiver_service.date == date && caregiver_service.period == period
+        is_service_available << caregiver_service
+        return is_service_available.nil?
+      end
+    end
+  end
+
 end
+
+
 
 
 
