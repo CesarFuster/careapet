@@ -14,7 +14,10 @@ class Service < ApplicationRecord
     is_service_available = []
     caregiver.caregiver_services.each do |service|
       is_service_available << service.date == date && service.period == period
-      is_service_available.nil?
+      if is_service_available.nil?
+        true
+      else
+      end
     end
   end
 
