@@ -35,7 +35,9 @@ class ServicesController < ApplicationController
     @service = Service.new(service_params)
     @service.buyer = current_user
     @service.caregiver = @user
-      if @service.available?
+    date = @service.date
+    period = @service.period
+      if @service.available?(date, period)
         items = user_task_params[:user_task_ids].drop(1)
         task_sum = 0
         items.each do |item|

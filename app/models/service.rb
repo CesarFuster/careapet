@@ -10,14 +10,11 @@ class Service < ApplicationRecord
 
   validates :period, inclusion: { in: ['9h - 10h', '10h - 11h','11h - 14h', '15h - 16h ', '16h - 17h']}
 
-  def available?
+  def available?(date, period)
     is_service_available = []
-    caregiver.caregiver_services.each do |service|
-      is_service_available << service.date == date && service.period == period
-      if is_service_available.nil?
-        true
-      else
-      end
+    caregiver.caregiver_services.each do |caregiver_service|
+      is_service_available << caregiver_service.date == date && caregiver_service.period == period
+      is_service_available.nil?
     end
   end
 
