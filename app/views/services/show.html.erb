@@ -4,7 +4,8 @@
 
   <p>Cliente: <%= @service.buyer.first_name %></p>
   <p>Cuidador: <%= @service.caregiver.first_name %></p>
-  <p>Data: <%= @service.date.strftime("%d/%m/%y") %> <%= @service.period %></p>
+  <p>Data de pedido: <%= @service.created_at.strftime("%d/%m/%y") %></p>
+  <p>Quando: <%= @service.date.strftime("%d/%m/%y") %> <%= @service.period %></p>
   <p>Confirmado: <%= @service.confirmed %> </p>
   <p>Autorização: <%= @service.pay_authorized %> </p>
   <% if @service.order %>
