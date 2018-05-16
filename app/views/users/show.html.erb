@@ -1,6 +1,6 @@
 <div class="container">
 
-  <p><%= @user.first_name %></p>
+  <p>Olá <%= @user.first_name %>!</p>
 
   <% if @user.caregiver %>
     <p>Este é um Cuidador</p>
@@ -44,8 +44,8 @@
   <% @buyer_services.each do |service| %>
     <p> <%= link_to "Número de Serviço #{service.id}", service_path(service) %> </p>
     <p> Cuidador: <%= service.caregiver.first_name %> </p>
-    <p> Data: <%= service.created_at.strftime("%d/%m/%y") %></p>
-    <p> Período: <%= service.period %></p>
+    <p>Data de pedido: <%= service.created_at.strftime("%d/%m/%y") %></p>
+    <p>Quando: <%= service.date.strftime("%d/%m/%y") %> <%= service.period %></p>
     <p> confirmado: <%= service.confirmed %></p>
     <p> status do pagamento: <%= service.pay_authorized %></p>
     <% if service.confirmed == true && service.pay_authorized == false %>
@@ -56,8 +56,8 @@
   <% @caregiver_services.each do |service| %>
     <p> <%= link_to "Número de Serviço #{service.id}", service_path(service) %>  </p>
     <p> Cliente: <%= service.buyer.first_name %> </p>
-    <p> Data: <%= service.created_at.strftime("%d/%m/%y") %></p>
-    <p> Período: <%= service.period %></p>
+    <p> Data de pedido: <%= service.created_at.strftime("%d/%m/%y") %></p>
+    <p>Quando: <%= service.date.strftime("%d/%m/%y") %> <%= service.period %></p>
     <p> confirmado: <%= service.confirmed  %></p>
     <% if service.confirmed == false %>
      <p> <%= link_to "Confirmar serviço", toggle_service_path(service), method: :put %> </p>
@@ -130,7 +130,6 @@
   <% end %>
 
 </div>
-
 
 
 

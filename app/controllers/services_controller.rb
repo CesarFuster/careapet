@@ -32,24 +32,24 @@ class ServicesController < ApplicationController
   end
 
   def create
-      @service = Service.new(service_params)
-      @service.buyer = current_user
-      @service.caregiver = @user
+    @service = Service.new(service_params)
+    @service.buyer = current_user
+    @service.caregiver = @user
 
-      items = user_task_params[:user_task_ids].drop(1)
-      task_sum = 0
-      items.each do |item|
-        user_task = UserTask.where(task: item.to_i).take
-        task_sum += user_task.price
-        item = Item.new(
-          service: @service,
-          price: user_task.price,
-          description: user_task.task.name
-        )
-        item.save!
-      end
+    items = user_task_params[:user_task_ids].drop(1)
+    task_sum = 0
+    items.each do |item|
+      user_task = UserTask.where(task: item.to_i).take
+      task_sum += user_task.price
+      item = Item.new(
+        service: @service,
+        price: user_task.price,
+        description: user_task.task.name
+      )
+      item.save!
+    end
 
-      @service.price = task_sum
+    @service.price = task_sum
 
       if @service.save!
         ServiceMailer.new_service_buyer(@service).deliver_now
