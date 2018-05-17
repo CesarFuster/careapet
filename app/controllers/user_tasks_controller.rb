@@ -7,7 +7,7 @@ class UserTasksController < ApplicationController
   end
 
   def show
-    @user_task = @user_task.user
+    @user_task = @user.user_task
   end
 
   def new
