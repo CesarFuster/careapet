@@ -56,7 +56,7 @@ class ServicesController < ApplicationController
           if @service.save!
             ServiceMailer.new_service_buyer(@service).deliver_now
             ServiceMailer.new_service_caregiver(@service).deliver_now
-            flash[:alert] = "Serviço solicitado!"
+            flash[:notice] = "Serviço solicitado!"
             redirect_to service_path(@service)
           else
             render :new
