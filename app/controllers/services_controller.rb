@@ -41,10 +41,8 @@ class ServicesController < ApplicationController
       if @service.available?(date, period)
           user_task_ids = user_task_params[:user_task_ids].drop(1)
           user = @user
-          @service.total_value(user,user_task_ids)
-          @service.total_value = @service.price
-          @service.service_items(user_task_ids)
-          @service.service_items = @service.items
+          @service.price = @service.total_value(user, user_task_ids)
+          @service.items = @service.service_items(user, user_task_ids)
 
           if @service.save!
             ServiceMailer.new_service_buyer(@service).deliver_now

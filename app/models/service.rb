@@ -24,25 +24,26 @@ class Service < ApplicationRecord
     user_task_ids.each do |id|
       id.to_i
     end
-    user_task_values = []
-    user_task_values << user.user_tasks.where(id: id)
-      return user_task_values.sum(&:price)
+    user.user_tasks << UserTask.where(task_id: id)
+      return user.user_tasks.sum(&:price)
   end
 
   def service_items(user, user_task_ids)
-    ids = user_task_ids
-    ids.each do |id|
-      user_tasks = []
-      user_tasks << user.user_tasks.where(id: id)
-      item = Item.new(
-        service: @service,
-        price: user_task.price,
-        description: user_task.task.name
-      )
-      item.save!
-      items = []
-      items << item
+    user_task_ids.each do |id|
+      id.to_i
     end
+    user.user_tasks << UserTask.where(task_id: id)
+      user.user_tasks.each do |user_task|
+        item = Item.new(
+          service: @service,
+          price: user_task.price,
+          description: user_task.task.name
+        )
+        item.save
+        items = []
+        items << item
+      end
+
     return items
   end
 
