@@ -39,7 +39,7 @@ class ServicesController < ApplicationController
     period = @service.period
 
       if @service.available?(date, period)
-          user_task_ids = user_task_params[:user_task_ids].drop(1)
+          user_task_ids = @service.caregiver.user_task_ids
           user = @user
           @service.price = @service.total_value(user, user_task_ids)
           @service.items = @service.service_items(user, user_task_ids)
@@ -72,10 +72,6 @@ class ServicesController < ApplicationController
 
   def service_params
     params.require(:service).permit(:date, :period, :buyer_id, :caregiver_id, :confirmed, :pay_authorized, :price)
-  end
-
-  def user_task_params
-    params.require(:service).permit(user_task_ids: [])
   end
 
 end
