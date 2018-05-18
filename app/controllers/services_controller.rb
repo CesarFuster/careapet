@@ -37,21 +37,14 @@ class ServicesController < ApplicationController
     @service.caregiver = @user
     date = @service.date
     period = @service.period
-      if @service.available?(date, period)
-        items = user_task_params[:user_task_ids].drop(1)
-        task_sum = 0
-        items.each do |item|
-          user_task = UserTask.where(task: item.to_i).take
-          task_sum += user_task.price
-          item = Item.new(
-            service: @service,
-            price: user_task.price,
-            description: user_task.task.name
-          )
-          item.save!
-        end
 
-        @service.price = task_sum
+      if @service.available?(date, period)
+          user_task_ids = user_task_params[:user_task_ids].drop(1)
+          user = @user
+          @service.total_value(user,user_task_ids)
+          @service.total_value = @service.price
+          @service.service_items(user_task_ids)
+          @service.service_items = @service.items
 
           if @service.save!
             ServiceMailer.new_service_buyer(@service).deliver_now
@@ -61,10 +54,12 @@ class ServicesController < ApplicationController
           else
             render :new
           end
+
       else
         flash[:alert] = "Período não disponível!"
         render :new
       end
+
   end
 
   private
