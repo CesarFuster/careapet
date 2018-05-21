@@ -22,14 +22,10 @@ class Service < ApplicationRecord
 
   def total_value(user, user_task_ids)
     this_service_user_tasks = []
-    user_task_ids.each do |id|
-      id.to_i
-      user.user_tasks.tasks.select do |task|
-        if user.user_tasks.task[:id] == id
-          this_service_user_tasks << user.user_tasks.task
-          byebug
-        end
-      end
+    user_task_ids.select do |id|
+      us_task = UserTask.where(task: id.to_i)
+      this_service_user_tasks << us_task
+      byebug
     end
     return this_service_user_tasks.sum(&:price)
   end

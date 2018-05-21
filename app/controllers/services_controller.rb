@@ -75,7 +75,7 @@ class ServicesController < ApplicationController
   end
 
   def user_task_params
-    params.require(:service).permit(:user_task_ids [])
+    params.require(:service).permit(user_task_ids: [])
   end
 
 end
