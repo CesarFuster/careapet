@@ -20,7 +20,7 @@ class Service < ApplicationRecord
     end
   end
 
-  def total_value(user, user_task_ids)
+  def total_value(user_task_ids)
     this_service_user_tasks = []
     user_task_ids.each do |id|
       this_service_user_tasks << UserTask.where(task: id.to_i)
@@ -29,25 +29,25 @@ class Service < ApplicationRecord
   end
 
 
-  def service_items(user, user_task_ids)
+  def service_items(user_task_ids)
+    items = []
     user_task_ids.each do |id|
-      id.to_i
-    end
-    user.user_tasks << UserTask.where(task: id)
-      user.user_tasks.each do |user_task|
-        item_price = user_task.price
-        item_description = user_task.task.name
-        item = Item.create(
-          service: @service,
-          price: item_price,
-          description: item_description
-        )
-        items = []
-        items << item
-      end
+      user_task << UserTask.where(task: id.to_i)
 
-    return items
+
+    items = user_task_params[:user_task_ids].drop(1)
+    items.each do |item|
+      user_task = UserTask.where(task: item.to_i).take
+      item = Item.new(
+        service: @service,
+        price: user_task.price,
+        description: user_task.task.name
+        )
+      item.save!
+    end
   end
 
 end
+
+
 
